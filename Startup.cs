@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LinuxAspNetCore.Persistance;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -31,6 +33,14 @@ namespace LinuxAspNetCore
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            
+            var connection = @"Server=db;Database=master;User=sa;Password=password123;";
+
+            services.AddDbContext<MyDbContext>(
+                options => options.UseSqlServer(connection));
+
+    
+           // services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
