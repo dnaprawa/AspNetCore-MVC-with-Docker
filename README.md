@@ -1,6 +1,6 @@
 # ASP.NET Core MVC with Docker file
 
-# How to run 
+# How to run (without database)
 
 ####  1. Open cmd/bash and go to your project location
 ####  2. Type the following commands
